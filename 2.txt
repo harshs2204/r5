@@ -1,0 +1,35 @@
+# Define the set class
+set <- function(elements) {
+obj <- list(elements = sort(unique(elements)))
+class(obj) <- "set"
+return(obj)
+}
+# Define the union function for sets
+union.set <- function(set1, set2) {
+elements <- sort(unique(c(set1$elements, set2$elements)))
+return(set(elements))
+}
+# Define the intersection function for sets
+intersection.set <- function(set1, set2) {
+elements <- intersect(set1$elements, set2$elements)
+return(set(elements))
+}
+# Define the complementation function for sets
+complement.set <- function(set1, universe) {
+elements <- setdiff(universe$elements, set1$elements)
+return(set(elements))
+}
+# Create sets
+omega <- set(1:10)
+subset1 <- set(c(2, 4, 6, 8))
+subset2 <- set(c(4, 6, 8, 10))
+universe <- set(1:20)
+# Perform union of subsets
+subset_union <- union.set(subset1, subset2)
+print(subset_union)
+# Perform intersection of subsets
+subset_intersection <- intersection.set(subset1, subset2)
+print(subset_intersection)
+# Perform complementation of subset
+subset_complement <- complement.set(subset1, universe)
+print(subset_complement)
